@@ -1,10 +1,10 @@
 #ifndef PASSKEY_H
 #define PASSKEY_H
-#include <openssl/sha.h>
 #include <string.h>
 #include <iostream>
 #include <iomanip>
 #include "Blob.h"
+#include "SHA256.h"
 
 using namespace std;
 

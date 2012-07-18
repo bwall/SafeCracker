@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1342549812 source:/home/bwall/pwsafe-cracking/CrackPwSafe/main.cpp
+1342589602 source:/home/bwall/pwsafe-cracking/CrackPwSafe/main.cpp
 	<iostream>
 	<iomanip>
 	"include/PWSfile.h"
@@ -17,17 +17,17 @@
 	<iostream>
 	<iomanip>
 
-1342499752 /home/bwall/pwsafe-cracking/CrackPwSafe/include/PassKey.h
-	<openssl/sha.h>
+1342603835 /home/bwall/pwsafe-cracking/CrackPwSafe/include/PassKey.h
 	<string.h>
 	<iostream>
 	<iomanip>
 	"Blob.h"
+	"SHA256.h"
 
 1342480214 source:/home/bwall/pwsafe-cracking/CrackPwSafe/src/PWSfile.cpp
 	"../include/PWSfile.h"
 
-1342499730 source:/home/bwall/pwsafe-cracking/CrackPwSafe/src/PassKey.cpp
+1342603886 source:/home/bwall/pwsafe-cracking/CrackPwSafe/src/PassKey.cpp
 	"../include/PassKey.h"
 
 1342483924 /home/bwall/pwsafe-cracking/CrackPwSafe/include/SwapBufferQueue.h
@@ -44,4 +44,10 @@
 
 1342497817 source:/home/bwall/pwsafe-cracking/CrackPwSafe/src/Blob.cpp
 	"../include/Blob.h"
+
+1342604659 source:/home/bwall/pwsafe-cracking/CrackPwSafe/src/SHA256.cpp
+	"../include/SHA256.h"
+
+1342605492 /home/bwall/pwsafe-cracking/CrackPwSafe/include/SHA256.h
+	<string.h>
 

@@ -40,30 +40,28 @@ bool PassKey::CheckPassword(const char * password, int length)
 
 void PassKey::StretchKey(const unsigned char * salt, const Blob * blob, const unsigned int N, unsigned char * output)
 {
-    SHA256_CTX sha256;
-    SHA256_Init(&sha256);
-    SHA256_Update(&sha256, blob->data, blob->size);
-    SHA256_Update(&sha256, salt, 32);
-    SHA256_Final(output, &sha256);
+    SHA256 sha;
+    sha.Update((unsigned char*)blob->data, blob->size);
+    sha.Update((unsigned char*)salt, 32);
+    sha.Finalize(output);
     for (unsigned int i = 0; i < N; i++)
     {
-        SHA256_Init(&sha256);
-        SHA256_Update(&sha256, output, 32);
-        SHA256_Final(output, &sha256);
+        SHA256 sha2;
+        sha2.Update(output, 32);
+        sha2.Finalize(output);
     }
 }
 
 void PassKey::StretchKey(const unsigned char *salt, const char * passkey, const int passlen, unsigned int N, unsigned char * output)
 {
-    SHA256_CTX sha256;
-    SHA256_Init(&sha256);
-    SHA256_Update(&sha256, passkey, passlen);
-    SHA256_Update(&sha256, salt, 32);
-    SHA256_Final(output, &sha256);
+    SHA256 sha;
+    sha.Update((unsigned char*)passkey, passlen);
+    sha.Update((unsigned char*)salt, 32);
+    sha.Finalize(output);
     for (unsigned int i = 0; i < N; i++)
     {
-        SHA256_Init(&sha256);
-        SHA256_Update(&sha256, output, 32);
-        SHA256_Final(output, &sha256);
+        SHA256 sha2;
+        sha2.Update(output, 32);
+        sha2.Finalize(output);
     }
 }
