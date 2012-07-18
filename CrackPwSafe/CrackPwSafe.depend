@@ -1,0 +1,47 @@
+# depslib dependency file v1.0
+1342549812 source:/home/bwall/pwsafe-cracking/CrackPwSafe/main.cpp
+	<iostream>
+	<iomanip>
+	"include/PWSfile.h"
+	"include/PassKey.h"
+	<stdio.h>
+	<pthread.h>
+	<queue>
+	<sys/time.h>
+	"include/Blob.h"
+
+1342478008 /home/bwall/pwsafe-cracking/CrackPwSafe/include/PWSfile.h
+	"PassKey.h"
+	<string>
+	<stdio.h>
+	<iostream>
+	<iomanip>
+
+1342499752 /home/bwall/pwsafe-cracking/CrackPwSafe/include/PassKey.h
+	<openssl/sha.h>
+	<string.h>
+	<iostream>
+	<iomanip>
+	"Blob.h"
+
+1342480214 source:/home/bwall/pwsafe-cracking/CrackPwSafe/src/PWSfile.cpp
+	"../include/PWSfile.h"
+
+1342499730 source:/home/bwall/pwsafe-cracking/CrackPwSafe/src/PassKey.cpp
+	"../include/PassKey.h"
+
+1342483924 /home/bwall/pwsafe-cracking/CrackPwSafe/include/SwapBufferQueue.h
+	<string>
+	<queue>
+	<vector>
+	<pthread.h>
+
+1342485620 source:/home/bwall/pwsafe-cracking/CrackPwSafe/src/SwapBufferQueue.cpp
+	"../include/SwapBufferQueue.h"
+
+1342496370 /home/bwall/pwsafe-cracking/CrackPwSafe/include/Blob.h
+	<string.h>
+
+1342497817 source:/home/bwall/pwsafe-cracking/CrackPwSafe/src/Blob.cpp
+	"../include/Blob.h"
+
