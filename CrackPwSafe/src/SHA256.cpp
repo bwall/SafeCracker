@@ -366,6 +366,65 @@ void SHA256::Update(unsigned char * buffer, int length)
 	index = length;
 }
 
+void SHA256::IterativeFinalize(unsigned char * output, unsigned int Iterations)
+{
+    uint data[16];
+	int i;
+	int words;
+
+	i = index;
+
+	block[i++] = 0x80;
+
+	for (; i & 3; i++) block[i] = 0;
+
+	words = i >> 2;
+	for (i = 0; i < words; i++)
+	{
+	    data[i] = (*((block + 4 * i)) << 24) | (*((block + 4 * i) + 1) << 16) | (*((block + 4 * i) + 2) << 8) | (*((block + 4 * i) + 3));
+	}
+
+	if (words > (16 - 2))
+	{
+		for (i = words; i < 16; i++) data[i] = 0;
+		sha256_transform(state, data);
+		for (i = 0; i < (16 - 2); i++) data[i] = 0;
+	}
+	else
+	{
+		for (i = words; i < 16 - 2; i++) data[i] = 0;
+	}
+
+	data[16 - 2] = (count_high << 9) | (count_low >> 23);
+	data[16 - 1] = (count_low << 9) | (index << 3);
+	sha256_transform(state, data);
+	unsigned char temp[64];
+	unsigned int * itemp = (uint*)temp;
+	for(int counter = 0; counter < Iterations; counter++)
+	{
+        memset(temp + 36, 0x00, 24);
+		itemp[8] = 0x80000000U;
+		memcpy(temp, state, 32);
+        state[0] = 0x6a09e667UL;
+        state[1] = 0xbb67ae85UL;
+        state[2] = 0x3c6ef372UL;
+        state[3] = 0xa54ff53aUL;
+        state[4] = 0x510e527fUL;
+        state[5] = 0x9b05688cUL;
+        state[6] = 0x1f83d9abUL;
+        state[7] = 0x5be0cd19UL;
+        itemp[15] = 256;
+        sha256_transform(state, itemp);
+	}
+    for (int i = 0; i < 8; i++)
+    {
+        *output++ = state[i] >> 24;
+        *output++ = 0xff & (state[i] >> 16);
+        *output++ = 0xff & (state[i] >> 8);
+        *output++ = 0xff & state[i];
+    }
+}
+
 void SHA256::Finalize(unsigned char * output)
 {
 	uint data[16];

@@ -33,7 +33,7 @@ void *crackThread(void *threadid)
         while(localQueue->size() > 0 && !found)
         {
             Blob * s = &localQueue->front();
-            if(pk->CheckPassword(s->data, s->size))
+            if(pk->CheckPassword(s))
             {
                 cout << "Password is " << s->data << endl;
                 flush(cout);

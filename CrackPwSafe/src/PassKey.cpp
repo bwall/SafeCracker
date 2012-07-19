@@ -43,13 +43,7 @@ void PassKey::StretchKey(const unsigned char * salt, const Blob * blob, const un
     SHA256 sha;
     sha.Update((unsigned char*)blob->data, blob->size);
     sha.Update((unsigned char*)salt, 32);
-    sha.Finalize(output);
-    for (unsigned int i = 0; i < N; i++)
-    {
-        SHA256 sha2;
-        sha2.Update(output, 32);
-        sha2.Finalize(output);
-    }
+    sha.IterativeFinalize(output, N);
 }
 
 void PassKey::StretchKey(const unsigned char *salt, const char * passkey, const int passlen, unsigned int N, unsigned char * output)
@@ -57,11 +51,5 @@ void PassKey::StretchKey(const unsigned char *salt, const char * passkey, const 
     SHA256 sha;
     sha.Update((unsigned char*)passkey, passlen);
     sha.Update((unsigned char*)salt, 32);
-    sha.Finalize(output);
-    for (unsigned int i = 0; i < N; i++)
-    {
-        SHA256 sha2;
-        sha2.Update(output, 32);
-        sha2.Finalize(output);
-    }
+    sha.IterativeFinalize(output, N);
 }

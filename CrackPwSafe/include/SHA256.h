@@ -1,6 +1,9 @@
 #ifndef SHA256_H
 #define SHA256_H
 #include <string.h>
+#include <iostream>
+
+using namespace std;
 
 #define uint unsigned int
 #define rotl(x,y) ( x<<y | x>>(32-y) )
@@ -18,6 +21,7 @@ class SHA256
     public:
         SHA256();
         void Update(unsigned char * buffer, int length);
+        void IterativeFinalize(unsigned char * output, unsigned int Iterations);
         void Finalize(unsigned char * output);
         virtual ~SHA256();
     protected:
