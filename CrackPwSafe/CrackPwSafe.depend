@@ -52,3 +52,44 @@
 	<string.h>
 	<iostream>
 
+1342676369 source:c:\users\bwall\documents\github\safecracker\crackpwsafe\src\blob.cpp
+	"../include/Blob.h"
+
+1342676369 c:\users\bwall\documents\github\safecracker\crackpwsafe\include\blob.h
+	<string.h>
+
+1342676369 source:c:\users\bwall\documents\github\safecracker\crackpwsafe\src\pwsfile.cpp
+	"../include/PWSfile.h"
+
+1342676369 c:\users\bwall\documents\github\safecracker\crackpwsafe\include\pwsfile.h
+	"PassKey.h"
+	<string>
+	<stdio.h>
+	<iostream>
+	<iomanip>
+
+1342676369 c:\users\bwall\documents\github\safecracker\crackpwsafe\include\passkey.h
+	<string.h>
+	<iostream>
+	<iomanip>
+	"Blob.h"
+	"SHA256.h"
+
+1342694643 c:\users\bwall\documents\github\safecracker\crackpwsafe\include\sha256.h
+	<string.h>
+	<iostream>
+
+1342676369 source:c:\users\bwall\documents\github\safecracker\crackpwsafe\src\passkey.cpp
+	"../include/PassKey.h"
+
+1342676369 source:c:\users\bwall\documents\github\safecracker\crackpwsafe\main.cpp
+	<iostream>
+	<iomanip>
+	"include/PWSfile.h"
+	"include/PassKey.h"
+	<stdio.h>
+	<pthread.h>
+	<queue>
+	<sys/time.h>
+	"include/Blob.h"
+

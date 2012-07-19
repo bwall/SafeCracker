@@ -8,8 +8,8 @@
 		<Build>
 			<Script file="lib_finder.script" />
 			<Target title="Debug">
-				<Option output="bin/Debug/CrackPwSafe" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj/Debug/" />
+				<Option output="bin\Debug\CrackPwSafe" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Debug\" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Option parameters="/home/bwall/pwsafe-cracking/pwsafe.psafe3 /home/bwall/pwsafe-cracking/CrackPwSafe/bin/Release/xaa2.txt" />
@@ -19,8 +19,8 @@
 				</Compiler>
 			</Target>
 			<Target title="Release">
-				<Option output="bin/Release/CrackPwSafe" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj/Release/" />
+				<Option output="bin\Release\CrackPwSafe" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Release\" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
@@ -41,20 +41,19 @@
 		<Linker>
 			<Add library="pthread" />
 		</Linker>
-		<Unit filename="include/Blob.h" />
-		<Unit filename="include/PWSfile.h" />
-		<Unit filename="include/PassKey.h" />
+		<Unit filename="include\Blob.h" />
+		<Unit filename="include\PWSfile.h" />
+		<Unit filename="include\PassKey.h" />
+		<Unit filename="include\SHA256.h" />
 		<Unit filename="main.cpp" />
-		<Unit filename="src/Blob.cpp" />
-		<Unit filename="src/PWSfile.cpp" />
-		<Unit filename="src/PassKey.cpp" />
+		<Unit filename="src\Blob.cpp" />
+		<Unit filename="src\PWSfile.cpp" />
+		<Unit filename="src\PassKey.cpp" />
+		<Unit filename="src\SHA256.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
-			<lib_finder disable_auto="1">
-				<lib name="libssl" />
-				<lib name="libcrypto" />
-			</lib_finder>
+			<lib_finder disable_auto="1" />
 			<debugger />
 		</Extensions>
 	</Project>
