@@ -84,7 +84,7 @@ inline void SHA256::sha256_transform_i(uint *state, uint * data)
 	temp4 += temp0;
 	temp0 += ROTXOR1( temp1 ) + MAJORITY( temp1, temp2, temp3 );
 
-	temp7 += ROTXOR2( temp4 ) + CHOICE( temp4, temp5, temp6 ) + SHA256_K[8] + ( (word08 = data[8]) );
+	temp7 += ROTXOR2( temp4 ) + CHOICE( temp4, temp5, temp6 ) + SHA256_K[8] + ( (word08 = 0x80000000U) );
 	temp3 += temp7;
 	temp7 += ROTXOR1( temp0 ) + MAJORITY( temp0, temp1, temp2 );
 
@@ -112,7 +112,7 @@ inline void SHA256::sha256_transform_i(uint *state, uint * data)
 	temp5 += temp1;
 	temp1 += ROTXOR1( temp2 ) + MAJORITY( temp2, temp3, temp4 );
 
-	temp0 += ROTXOR2( temp5 ) + CHOICE( temp5, temp6, temp7 ) + SHA256_K[15] + ( (word15 = data[15]) );
+	temp0 += ROTXOR2( temp5 ) + CHOICE( temp5, temp6, temp7 ) + SHA256_K[15] + ( (word15 = 256) );
 	temp4 += temp0;
 	temp0 += ROTXOR1( temp1 ) + MAJORITY( temp1, temp2, temp3 );
 
@@ -689,8 +689,6 @@ void SHA256::IterativeFinalize(unsigned char * output, unsigned int Iterations)
 	sha256_transform(state, data);
 	unsigned char temp[64];
 	unsigned int * itemp = (uint*)temp;
-	itemp[8] = 0x80000000U;
-	itemp[15] = 256;
 	for(int counter = 0; counter < Iterations; counter++)
 	{
 		memcpy(temp, state, 32);
