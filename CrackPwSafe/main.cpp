@@ -8,13 +8,14 @@
 #include <sys/time.h>
 #include "include/Blob.h"
 
-#define ITERATION_REPORT 10000
+#define ITERATION_REPORT 100000
 
 using namespace std;
 
 vector<pthread_t*> threads;
 vector<queue<Blob>* > blobs;
 vector<PassKey*> passkeys;
+vector<pthread_mutex_t*> mutexes;
 volatile bool done = false;
 volatile bool started = false;
 volatile bool found = false;
@@ -28,11 +29,15 @@ void *crackThread(void *threadid)
     queue<Blob>*  localQueue = blobs.at(index);
     while(!started) usleep(1000);
     gettimeofday(&startTime, NULL);
+    pthread_mutex_t * mutex = mutexes.at(index);
+    Blob * s;
     while(!done && !found)
     {
         while(localQueue->size() > 0 && !found)
         {
-            Blob * s = &localQueue->front();
+            pthread_mutex_lock(mutex);
+            s = &localQueue->front();
+            pthread_mutex_unlock(mutex);
             if(pk->CheckPassword(s))
             {
                 cout << "Password is " << s->data << endl;
@@ -50,7 +55,9 @@ void *crackThread(void *threadid)
                 double seconds = (now.tv_sec + ((double)now.tv_usec / 1000000)) - (startTime.tv_sec + ((double)startTime.tv_usec / 1000000));
                 cout << endl << dec << "Hashes(" << iterationCount << ") Per Second(" << seconds << "s): " << ((double)iterationCount)/(seconds);
             }
+            pthread_mutex_lock(mutex);
             localQueue->pop();
+            pthread_mutex_unlock(mutex);
         }
     }
     return NULL;
@@ -87,13 +94,16 @@ int main(int argc, char ** argv)
 
         done = false;
         started = false;
-        int thread_count = 4;
+        int thread_count = 6;
         for(long x = 0; x < thread_count; x++)
         {
             pthread_t * cThread = new pthread_t();
             threads.push_back(cThread);
             blobs.push_back(new queue<Blob>());
             passkeys.push_back(new PassKey(pk));
+            pthread_mutex_t * mutex = new pthread_mutex_t();
+            *mutex = PTHREAD_MUTEX_INITIALIZER;
+            mutexes.push_back(mutex);
             pthread_create(cThread, NULL, crackThread, (void*)x);
         }
 
@@ -109,26 +119,48 @@ int main(int argc, char ** argv)
                     continue;
                 Blob p(strlen(password), password);
                 int count = 0;
-                for(int x = 0; x < thread_count; x++) count += (blobs.at(x))->size();
+                for(int x = 0; x < thread_count; x++)
+                {
+                    pthread_mutex_lock(mutexes.at(x));
+                    count += (blobs.at(x))->size();
+                    pthread_mutex_unlock(mutexes.at(x));
+                }
                 while(count > 100000)
                 {
                     usleep(10 * 1000);
                     count = 0;
-                    for(int x = 0; x < thread_count; x++) count += (blobs.at(x))->size();
+                    for(int x = 0; x < thread_count; x++)
+                    {
+                        pthread_mutex_lock(mutexes.at(x));
+                        count += (blobs.at(x))->size();
+                        pthread_mutex_unlock(mutexes.at(x));
+                    }
                 }
                 loaded++;
+                pthread_mutex_lock(mutexes.at(loaded % thread_count));
                 (blobs.at(loaded % thread_count))->push(p);
+                pthread_mutex_unlock(mutexes.at(loaded % thread_count));
                 started = true;
             }
         }
         fclose(dict);
         int count = 0;
-        for(int x = 0; x < thread_count; x++) count += (blobs.at(x))->size();
+        for(int x = 0; x < thread_count; x++)
+        {
+            pthread_mutex_lock(mutexes.at(x));
+            count += (blobs.at(x))->size();
+            pthread_mutex_unlock(mutexes.at(x));
+        }
         while(count > 0 && !found)
         {
             usleep(100 * 1000);
             count = 0;
-            for(int x = 0; x < thread_count; x++) count += (blobs.at(x))->size();
+            for(int x = 0; x < thread_count; x++)
+            {
+                pthread_mutex_lock(mutexes.at(x));
+                count += (blobs.at(x))->size();
+                pthread_mutex_unlock(mutexes.at(x));
+            }
         }
         done = true;
         for(int x = 0; x < thread_count; x++)

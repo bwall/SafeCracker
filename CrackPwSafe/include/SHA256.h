@@ -27,7 +27,7 @@ class SHA256
     protected:
     private:
         void sha256_transform(uint *state, uint *data);
-		void sha256_transform_i(uint *state, uint *data);
+		void sha256_transform_i(uint Iterations);
         void sha256_block(const unsigned char * block);
 
         unsigned int state[8];
