@@ -6,12 +6,12 @@
 #include <pthread.h>
 #include <queue>
 #include "include/Blob.h"
+#include <sys/time.h>
 
 #ifdef _WIN32 || _WIN64
 #include <Windows.h>
 #define msleep(x) Sleep(x)
 #else
-#include <sys/time.h>
 #define msleep(x) usleep(x * 1000)
 #endif
 
@@ -36,7 +36,6 @@ int GetCoreCount()
         SYSTEM_INFO sysinfo;
         GetSystemInfo( &sysinfo );
         cores = sysinfo.dwNumberOfProcessors;
-        #error Can't be compiled on Windows yet
     #else
         cores = sysconf( _SC_NPROCESSORS_ONLN );
     #endif

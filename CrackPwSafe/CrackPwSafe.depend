@@ -68,7 +68,7 @@
 	<string.h>
 	<iostream>
 
-1342676369 source:c:\users\bwall\documents\github\safecracker\crackpwsafe\src\blob.cpp
+1342832803 source:c:\users\bwall\documents\github\safecracker\crackpwsafe\src\blob.cpp
 	"../include/Blob.h"
 
 1342832802 c:\users\bwall\documents\github\safecracker\crackpwsafe\include\blob.h
@@ -145,4 +145,7 @@
 
 1342816519 source:/home/bwall/Projects/pwcrack/CrackPwSafe/src/Blob.cpp
 	"../include/Blob.h"
+
+1342832803 source:c:\users\bwall\documents\github\safecracker\crackpwsafe\src\sha256.cpp
+	"../include/SHA256.h"
 
