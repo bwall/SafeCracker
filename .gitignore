@@ -2,7 +2,8 @@
 #################
 ## Eclipse
 #################
-
+*.psafe3
+*.lst
 *.pydevproject
 .project
 .metadata

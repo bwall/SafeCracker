@@ -98,7 +98,7 @@
 1342832802 source:c:\users\bwall\documents\github\safecracker\crackpwsafe\src\passkey.cpp
 	"../include/PassKey.h"
 
-1342832802 source:c:\users\bwall\documents\github\safecracker\crackpwsafe\main.cpp
+1342833965 source:c:\users\bwall\documents\github\safecracker\crackpwsafe\main.cpp
 	<iostream>
 	<iomanip>
 	"include/PWSfile.h"
@@ -107,8 +107,8 @@
 	<pthread.h>
 	<queue>
 	"include/Blob.h"
-	<Windows.h>
 	<sys/time.h>
+	<Windows.h>
 
 1342829661 source:/home/bwall/Projects/pwcrack/CrackPwSafe/main.cpp
 	<iostream>
@@ -146,6 +146,6 @@
 1342816519 source:/home/bwall/Projects/pwcrack/CrackPwSafe/src/Blob.cpp
 	"../include/Blob.h"
 
-1342832803 source:c:\users\bwall\documents\github\safecracker\crackpwsafe\src\sha256.cpp
+1342834202 source:c:\users\bwall\documents\github\safecracker\crackpwsafe\src\sha256.cpp
 	"../include/SHA256.h"
 

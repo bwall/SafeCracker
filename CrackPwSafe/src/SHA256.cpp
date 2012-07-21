@@ -987,16 +987,8 @@ bool SHA256::IterativeFinalize(unsigned char * input, unsigned int Iterations)
 	unsigned int desiredState[8];
     for (int i = 0; i < 8; i++)
     {
-        desiredState[i] = (*((input + 4 * i)) << 24) | (*((input + 4 * i) + 1) << 16) | (*((input + 4 * i) + 2) << 8) | (*((input + 4 * i) + 3));
+        desiredState[i] = ((*((input + 4 * i)) << 24) | (*((input + 4 * i) + 1) << 16) | (*((input + 4 * i) + 2) << 8) | (*((input + 4 * i) + 3))) - InitialState[i];
     }
-    desiredState[0] -= 0x6a09e667UL;
-    desiredState[1] -= 0xbb67ae85UL;
-    desiredState[2] -= 0x3c6ef372UL;
-    desiredState[3] -= 0xa54ff53aUL;
-    desiredState[4] -= 0x510e527fUL;
-    desiredState[5] -= 0x9b05688cUL;
-    desiredState[6] -= 0x1f83d9abUL;
-    desiredState[7] -= 0x5be0cd19UL;
     return sha256_transform_i(Iterations, desiredState);
 }
 
