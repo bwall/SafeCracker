@@ -21,13 +21,13 @@ class SHA256
     public:
         SHA256();
         void Update(unsigned char * buffer, int length);
-        void IterativeFinalize(unsigned char * output, unsigned int Iterations);
+        bool IterativeFinalize(unsigned char * input, unsigned int Iterations);
         void Finalize(unsigned char * output);
         virtual ~SHA256();
     protected:
     private:
         void sha256_transform(uint *state, uint *data);
-		void sha256_transform_i(uint Iterations);
+		bool sha256_transform_i(uint Iterations, uint * desiredState);
         void sha256_block(const unsigned char * block);
 
         unsigned int state[8];

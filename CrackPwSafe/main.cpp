@@ -5,8 +5,15 @@
 #include <stdio.h>
 #include <pthread.h>
 #include <queue>
-#include <sys/time.h>
 #include "include/Blob.h"
+
+#ifdef _WIN32 || _WIN64
+#include <Windows.h>
+#define msleep(x) Sleep(x)
+#else
+#include <sys/time.h>
+#define msleep(x) usleep(x * 1000)
+#endif
 
 #define ITERATION_REPORT 100000
 
@@ -22,12 +29,26 @@ volatile bool found = false;
 volatile unsigned long long iterationCount = 0;
 struct timeval startTime;
 
+int GetCoreCount()
+{
+    int cores = 1;
+    #ifdef _WIN32 || _WIN64
+        SYSTEM_INFO sysinfo;
+        GetSystemInfo( &sysinfo );
+        cores = sysinfo.dwNumberOfProcessors;
+        #error Can't be compiled on Windows yet
+    #else
+        cores = sysconf( _SC_NPROCESSORS_ONLN );
+    #endif
+    return cores;
+}
+
 void *crackThread(void *threadid)
 {
     long index = (long)threadid;
     PassKey * pk = passkeys.at(index);
     queue<Blob>*  localQueue = blobs.at(index);
-    while(!started) usleep(1000);
+    while(!started) msleep(1);
     gettimeofday(&startTime, NULL);
     pthread_mutex_t * mutex = mutexes.at(index);
     Blob * s;
@@ -94,7 +115,7 @@ int main(int argc, char ** argv)
 
         done = false;
         started = false;
-        int thread_count = 6;
+        int thread_count = GetCoreCount();
         for(long x = 0; x < thread_count; x++)
         {
             pthread_t * cThread = new pthread_t();
@@ -127,7 +148,7 @@ int main(int argc, char ** argv)
                 }
                 while(count > 100000)
                 {
-                    usleep(10 * 1000);
+                    msleep(10);
                     count = 0;
                     for(int x = 0; x < thread_count; x++)
                     {
@@ -153,7 +174,7 @@ int main(int argc, char ** argv)
         }
         while(count > 0 && !found)
         {
-            usleep(100 * 1000);
+            msleep(100);
             count = 0;
             for(int x = 0; x < thread_count; x++)
             {

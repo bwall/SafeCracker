@@ -28,28 +28,34 @@ PassKey::PassKey(unsigned char * Salt, unsigned int N, unsigned char * stretched
 
 bool PassKey::CheckPassword(const Blob * b)
 {
-    StretchKey(this->Salt, b, this->N + 1, temp);
-    return (memcmp(temp, this->StretchedKey, 32) == 0);
+    SHA256 sha;
+    sha.Update((unsigned char*)b->data, b->size);
+    sha.Update((unsigned char*)this->Salt, 32);
+    return sha.IterativeFinalize(this->StretchedKey, this->N + 1);
+    //StretchKey(this->Salt, b, this->N + 1, temp);
+    //return (memcmp(temp, this->StretchedKey, 32) == 0);
 }
 
 bool PassKey::CheckPassword(const char * password, int length)
 {
-    StretchKey(this->Salt, password, length, this->N + 1, temp);
-    return (memcmp(temp, this->StretchedKey, 32) == 0);
+    SHA256 sha;
+    sha.Update((unsigned char*)password, length);
+    sha.Update((unsigned char*)this->Salt, 32);
+    return sha.IterativeFinalize(this->StretchedKey, this->N + 1);
 }
 
 void PassKey::StretchKey(const unsigned char * salt, const Blob * blob, const unsigned int N, unsigned char * output)
 {
-    SHA256 sha;
+    /*SHA256 sha;
     sha.Update((unsigned char*)blob->data, blob->size);
     sha.Update((unsigned char*)salt, 32);
-    sha.IterativeFinalize(output, N);
+    sha.IterativeFinalize(output, N);*/
 }
 
 void PassKey::StretchKey(const unsigned char *salt, const char * passkey, const int passlen, unsigned int N, unsigned char * output)
 {
-    SHA256 sha;
+    /*SHA256 sha;
     sha.Update((unsigned char*)passkey, passlen);
     sha.Update((unsigned char*)salt, 32);
-    sha.IterativeFinalize(output, N);
+    sha.IterativeFinalize(output, N);*/
 }

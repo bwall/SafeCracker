@@ -11,21 +11,21 @@
 		<Cursor position="486" topLine="0" />
 	</File>
 	<File name="include/SHA256.h" open="1" top="0" tabpos="6">
-		<Cursor position="1034" topLine="5" />
+		<Cursor position="748" topLine="8" />
 	</File>
 	<File name="main.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="2998" topLine="88" />
+		<Cursor position="5280" topLine="133" />
 	</File>
 	<File name="src/Blob.cpp" open="1" top="0" tabpos="5">
 		<Cursor position="65" topLine="0" />
 	</File>
-	<File name="src/PWSfile.cpp" open="1" top="1" tabpos="8">
-		<Cursor position="460" topLine="11" />
+	<File name="src/PWSfile.cpp" open="1" top="0" tabpos="8">
+		<Cursor position="406" topLine="0" />
 	</File>
 	<File name="src/PassKey.cpp" open="1" top="0" tabpos="3">
-		<Cursor position="584" topLine="20" />
+		<Cursor position="613" topLine="16" />
 	</File>
-	<File name="src/SHA256.cpp" open="1" top="0" tabpos="7">
-		<Cursor position="32144" topLine="679" />
+	<File name="src/SHA256.cpp" open="1" top="1" tabpos="7">
+		<Cursor position="30642" topLine="110" />
 	</File>
 </CodeBlocks_layout_file>
