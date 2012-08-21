@@ -85,6 +85,14 @@ void *crackThread(void *threadid)
 
 int main(int argc, char ** argv)
 {
+    /*vector<string> files;
+    PWSfile f;
+    f.GetSafesInDefaultLocations(files);
+    for(int x = 0; x < files.size(); x++)
+    {
+        cout << "File: " << files.at(x) << endl;
+    }
+    return 0;*/
     if(argc == 3)
     {
         string safelocation(argv[1]);

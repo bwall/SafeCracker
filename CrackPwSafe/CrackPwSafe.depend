@@ -74,10 +74,12 @@
 1342832802 c:\users\bwall\documents\github\safecracker\crackpwsafe\include\blob.h
 	<string.h>
 
-1342832802 source:c:\users\bwall\documents\github\safecracker\crackpwsafe\src\pwsfile.cpp
+1342850351 source:c:\users\bwall\documents\github\safecracker\crackpwsafe\src\pwsfile.cpp
 	"../include/PWSfile.h"
 
-1342832802 c:\users\bwall\documents\github\safecracker\crackpwsafe\include\pwsfile.h
+1342846440 c:\users\bwall\documents\github\safecracker\crackpwsafe\include\pwsfile.h
+	"AbstractSafe.h"
+	"SystemUtils.h"
 	"PassKey.h"
 	<string>
 	<stdio.h>
@@ -98,7 +100,7 @@
 1342832802 source:c:\users\bwall\documents\github\safecracker\crackpwsafe\src\passkey.cpp
 	"../include/PassKey.h"
 
-1342833965 source:c:\users\bwall\documents\github\safecracker\crackpwsafe\main.cpp
+1342850213 source:c:\users\bwall\documents\github\safecracker\crackpwsafe\main.cpp
 	<iostream>
 	<iomanip>
 	"include/PWSfile.h"
@@ -148,4 +150,20 @@
 
 1342834202 source:c:\users\bwall\documents\github\safecracker\crackpwsafe\src\sha256.cpp
 	"../include/SHA256.h"
+
+1342845066 source:c:\users\bwall\documents\github\safecracker\crackpwsafe\src\abstractsafe.cpp
+	"../include/AbstractSafe.h"
+
+1342846486 c:\users\bwall\documents\github\safecracker\crackpwsafe\include\abstractsafe.h
+	<vector>
+	<string>
+
+1342847829 c:\users\bwall\documents\github\safecracker\crackpwsafe\include\systemutils.h
+	<sys/types.h>
+	<dirent.h>
+	<string>
+	<vector>
+
+1342847994 source:c:\users\bwall\documents\github\safecracker\crackpwsafe\src\systemutils.cpp
+	"../include/SystemUtils.h"
 

@@ -42,15 +42,19 @@
 		<Linker>
 			<Add library="pthread" />
 		</Linker>
+		<Unit filename="include\AbstractSafe.h" />
 		<Unit filename="include\Blob.h" />
 		<Unit filename="include\PWSfile.h" />
 		<Unit filename="include\PassKey.h" />
 		<Unit filename="include\SHA256.h" />
+		<Unit filename="include\SystemUtils.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src\AbstractSafe.cpp" />
 		<Unit filename="src\Blob.cpp" />
 		<Unit filename="src\PWSfile.cpp" />
 		<Unit filename="src\PassKey.cpp" />
 		<Unit filename="src\SHA256.cpp" />
+		<Unit filename="src\SystemUtils.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
