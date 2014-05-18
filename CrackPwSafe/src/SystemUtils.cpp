@@ -16,7 +16,7 @@ int SystemUtils::GetFilesInDirectory(const char * dir, vector<string> &files)
     struct dirent *dirp;
     if((dp  = opendir(dir)) == NULL)
     {
-        return errno;
+        return -1;
     }
 
     while ((dirp = readdir(dp)) != NULL)

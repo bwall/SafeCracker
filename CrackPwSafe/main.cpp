@@ -12,6 +12,7 @@
 #include <Windows.h>
 #define msleep(x) Sleep(x)
 #else
+#include <unistd.h>
 #define msleep(x) usleep(x * 1000)
 #endif
 
